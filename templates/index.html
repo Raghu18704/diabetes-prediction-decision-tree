@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Diabetes Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Diabetes Prediction</h2>
+
+        <form action="/predict" method="post">
+            <input type="number" name="age" placeholder="Age" required>
+
+            <input type="number" step="0.1" name="bmi" placeholder="BMI" required>
+
+            <input type="number" step="0.1" name="HbA1c_level" placeholder="HbA1c Level" required>
+
+            <input type="number" name="blood_glucose_level" placeholder="Blood Glucose Level" required>
+
+            <select name="gender" required>
+                <option value="">Select Gender</option>
+                <option>Male</option>
+                <option>Female</option>
+            </select>
+
+            <select name="hypertension" required>
+                <option value="">Hypertension</option>
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+            </select>
+
+            <select name="heart_disease" required>
+                <option value="">Heart Disease</option>
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+            </select>
+
+
+            <select name="smoking_history" required>
+                <option value="">Smoking History</option>
+                <option value="never">Never</option>
+                <option value="former">Former</option>
+                <option value="current">Current</option>
+            </select>
+
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if prediction_text %}
+        <div class="result">
+            {{ prediction_text }}
+        </div>
+        {% endif %}
+
+        <div class="footer">
+            For educational use only • Not a medical diagnosis
+        </div>
+    </div>
+
+</body>
+
+</html>
